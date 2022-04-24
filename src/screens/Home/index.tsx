@@ -43,8 +43,10 @@ export function Home() {
     if (searchText === '' || !searchText)
       return 0;
     
+    const formattedText = (searchText.toLowerCase()).replace(/ /g, '');
+
     const searchData = filter(data, (item) => (
-      (item.service_name.toString().toLowerCase().replace(/ /g, '')).indexOf(searchText) > - 1));
+      (item.service_name.toString().toLowerCase().replace(/ /g, '')).indexOf(formattedText) > - 1));
 
     setSearchListData(searchData);
   }
@@ -52,8 +54,7 @@ export function Home() {
   function handleChangeInputText(text: string) {
     // Update searchText value
     // replaces space with empty string
-    const formattedText = (text.toLowerCase()).replace(/ /g, '');
-    setSearchText(formattedText);
+    setSearchText(text);
   }
 
   useFocusEffect(useCallback(() => {
